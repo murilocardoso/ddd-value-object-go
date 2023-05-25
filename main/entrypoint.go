@@ -17,14 +17,13 @@ um simples apelido para string.
 func main() {
 	var fiscalCondition domain.FiscalCondition
 
-	fiscalCondition = "Murilo"
-	//fiscalCondition, err := domain.NewFiscalConditionFromString("Monotributo")
+	fiscalCondition, err := domain.NewFiscalConditionFromString("Monotributo")
 
 	fmt.Println(strings.Repeat("-", 30))
 	fmt.Println(fmt.Sprintf("FISCAL_CONDITION: %s", fiscalCondition))
 	fmt.Println(fmt.Sprintf("IS CONSUMIDOR FINAL: %t", fiscalCondition.IsConsumidorFinal()))
 	fmt.Println(fmt.Sprintf("IS MONOTRIBUTO: %t", fiscalCondition.IsMonotributo()))
 	fmt.Println(fmt.Sprintf("IS RESPONSABLE INSCRIPTO: %t", fiscalCondition.IsResponsableInscripto()))
-	//fmt.Println(fmt.Sprintf("ERROR: %+v", err))
+	fmt.Println(fmt.Sprintf("ERROR: %+v", err))
 	fmt.Println(strings.Repeat("-", 30))
 }
