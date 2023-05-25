@@ -7,22 +7,22 @@ import (
 )
 
 /*
-Uma evolução para o nosso modelo seria criar um tipo FiscalCondition e definir constantes para os possíveis valores,
-olhando muitos códigos go, essa abordagem é bastante usada
+Uma possível forma de resolver é convencionar usar uma função que encapsule as validações dos valores válidos, nesse
+caso seria uma função construtora do tipo FiscalCondition
 */
 
 func main() {
 	var fiscalCondition domain.FiscalCondition
 
-	fiscalCondition = "Murilo"
+	fiscalCondition, err := domain.NewFiscalConditionFromString("Monotributo")
 
 	fmt.Println(strings.Repeat("-", 30))
-	fmt.Println(fiscalCondition)
+	fmt.Println(fmt.Sprintf("FISCAL_CONDITION: %s", fiscalCondition))
+	fmt.Println(fmt.Sprintf("ERROR: %+v", err))
 	fmt.Println(strings.Repeat("-", 30))
 }
 
 /*
-Esta abordagem ainda é frágil em relação à consistência, apesar de já saber que é um tipo e possui determinados
-valores, não é possível garantir que serão atribuídos apenas valores válidos, por exemplo, posso continuar pasando
-"Murilo" como um possível valor.
+Nesse caso, como Monotributo não está normalizado da forma esperada é retornado um erro.
+Se passarmos o valor normalizado corretamente, não teremos problemas...
 */
