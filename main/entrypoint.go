@@ -17,7 +17,7 @@ do nosso modelo de condição fiscal. Para fins de exemplo, vou considerar o vaz
 func main() {
 	var fiscalCondition domain.FiscalCondition
 
-	fiscalCondition = domain.FiscalCondition{}
+	fiscalCondition, err := domain.NewFiscalConditionFromString("")
 
 	fmt.Println(strings.Repeat("-", 30))
 	fmt.Println(fmt.Sprintf("FISCAL_CONDITION: %s", fiscalCondition))
@@ -25,6 +25,6 @@ func main() {
 	fmt.Println(fmt.Sprintf("IS MONOTRIBUTO: %t", fiscalCondition.IsMonotributo()))
 	fmt.Println(fmt.Sprintf("IS RESPONSABLE INSCRIPTO: %t", fiscalCondition.IsResponsableInscripto()))
 	fmt.Println(fmt.Sprintf("IS EMPTY: %t", fiscalCondition.IsEmpty()))
-	//fmt.Println(fmt.Sprintf("ERROR: %+v", err))
+	fmt.Println(fmt.Sprintf("ERROR: %+v", err))
 	fmt.Println(strings.Repeat("-", 30))
 }
