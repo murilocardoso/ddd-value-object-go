@@ -14,9 +14,9 @@ import (
 type FiscalCondition string
 
 const (
-	ConsumidorFinal      FiscalCondition = "CONSUMIDOR_FINAL"
-	Monotributo          FiscalCondition = "MONOTRIBUTO"
-	ResponsableInscripto FiscalCondition = "RESPONSABLE_INSCRIPTO"
+	consumidorFinal      FiscalCondition = "CONSUMIDOR_FINAL"
+	monotributo          FiscalCondition = "MONOTRIBUTO"
+	responsableInscripto FiscalCondition = "RESPONSABLE_INSCRIPTO"
 )
 
 func NewFiscalConditionFromString(aFiscalCondition string) (FiscalCondition, error) {
@@ -39,7 +39,7 @@ func newFiscalCondition(aFiscalCondition string) (FiscalCondition, error) {
 }
 
 func (f *FiscalCondition) valid() bool {
-	validValues := []string{string(ConsumidorFinal), string(Monotributo), string(ResponsableInscripto)}
+	validValues := []string{string(consumidorFinal), string(monotributo), string(responsableInscripto)}
 	// go get github.com/thoas/go-funk
 	return funk.Contains(validValues, string(*f))
 }
