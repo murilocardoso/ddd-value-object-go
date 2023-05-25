@@ -22,6 +22,19 @@ const (
 	empty                string = ""
 )
 
+func (f *FiscalCondition) Equals(fiscalCondition FiscalCondition) bool {
+	return f.value == fiscalCondition.value
+}
+
+func (f *FiscalCondition) EqualsString(stringFiscalCondition string) (bool, error) {
+	normalizedFiscalCondition, err := normalizeFiscalCondition(stringFiscalCondition)
+	if err != nil {
+		return false, err
+	}
+
+	return f.value == normalizedFiscalCondition, nil
+}
+
 func (f *FiscalCondition) IsConsumidorFinal() bool {
 	return f.value == consumidorFinal
 }
