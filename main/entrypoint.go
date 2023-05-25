@@ -8,7 +8,7 @@ import (
 func main() {
 	var fiscalCondition string
 
-	fiscalCondition = "Monotributo"
+	fiscalCondition = "Murilo"
 
 	fmt.Println(strings.Repeat("-", 30))
 	fmt.Println(fiscalCondition)
