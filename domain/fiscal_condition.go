@@ -19,6 +19,18 @@ const (
 	responsableInscripto FiscalCondition = "RESPONSABLE_INSCRIPTO"
 )
 
+func (f *FiscalCondition) IsConsumidorFinal() bool {
+	return *f == consumidorFinal
+}
+
+func (f *FiscalCondition) IsMonotributo() bool {
+	return *f == monotributo
+}
+
+func (f *FiscalCondition) IsResponsableInscripto() bool {
+	return *f == responsableInscripto
+}
+
 func NewFiscalConditionFromString(aFiscalCondition string) (FiscalCondition, error) {
 	normalizedFiscalCondition, err := normalizeFiscalCondition(aFiscalCondition)
 	if err != nil {

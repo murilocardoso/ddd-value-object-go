@@ -15,6 +15,8 @@ Ao encapsular os valores representados pelas constantes parece que perdemos algu
 (i) Como posso saber se uma determinada condição fiscal é Monotributo ou é Consumidor Final?
 (i.i) Uma forma é criar os dois tipos e compará-los, mas nesse exemplo quero apenas saber se um determinado valor é
 monotributo ou não.
+
+Para resolver usando os famosos IsSomething()...
 */
 
 func main() {
@@ -24,6 +26,15 @@ func main() {
 
 	fmt.Println(strings.Repeat("-", 30))
 	fmt.Println(fmt.Sprintf("FISCAL_CONDITION: %s", fiscalCondition))
+	fmt.Println(fmt.Sprintf("IS CONSUMIDOR FINAL: %t", fiscalCondition.IsConsumidorFinal()))
+	fmt.Println(fmt.Sprintf("IS MONOTRIBUTO: %t", fiscalCondition.IsMonotributo()))
+	fmt.Println(fmt.Sprintf("IS RESPONSABLE INSCRIPTO: %t", fiscalCondition.IsResponsableInscripto()))
 	fmt.Println(fmt.Sprintf("ERROR: %+v", err))
 	fmt.Println(strings.Repeat("-", 30))
 }
+
+/*
+Os atributos estão encapsulados e a forma que estes valores são usados internamente é uma coisa e os métodos expostos
+é outra. Inclusive, depender de um método ou função é muito melhor que depender de um valor (mesmo que seja uma constante)
+Em um método ou função o comportamento é encapsulado e uma eventual tratativa pode ser realizada.
+*/
