@@ -7,14 +7,14 @@ import (
 )
 
 /*
-O encapsulamento do go é por pacote, o arquivo não exerce nenhuma influencia sobre o encapsulamento. Para garantir o
-encapsulamento desse modelo, podemos dedicar um pacote específico para este objeto de valor.
+Podemos também tipar o nosso erro, dessa forma quem for usar o objeto de valor poderá saber exatamente qual
+erro ocorreu.
 */
 
 func main() {
 	var fiscalCondition domainfiscalcondition.Model
 
-	fiscalCondition, err := domainfiscalcondition.NewFromString("Monotributo")
+	fiscalCondition, err := domainfiscalcondition.NewFromString("Valor invalido")
 
 	fmt.Println(strings.Repeat("-", 30))
 	fmt.Println(fmt.Sprintf("FISCAL_CONDITION: %s", fiscalCondition))

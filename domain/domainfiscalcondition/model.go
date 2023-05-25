@@ -1,8 +1,6 @@
 package domainfiscalcondition
 
 import (
-	"errors"
-	"fmt"
 	"github.com/thoas/go-funk"
 	"golang.org/x/text/runes"
 	"golang.org/x/text/transform"
@@ -74,7 +72,7 @@ func (f *Model) IsEmpty() bool {
 func NewFromString(aFiscalCondition string) (Model, error) {
 	normalizedFiscalCondition, err := normalizeFiscalCondition(aFiscalCondition)
 	if err != nil {
-		return Model{}, err
+		return Empty(), err
 	}
 
 	return new(normalizedFiscalCondition)
@@ -86,7 +84,7 @@ func new(aFiscalCondition string) (Model, error) {
 	}
 
 	if !fiscalCondition.valid() {
-		return Model{}, errors.New(fmt.Sprintf("Invalid fiscal condition %s", fiscalCondition))
+		return Empty(), NewInvalidFiscalCondition(aFiscalCondition)
 	}
 
 	return fiscalCondition, nil
