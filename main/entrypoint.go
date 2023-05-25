@@ -7,17 +7,15 @@ import (
 )
 
 /*
-Outra necessidade comum é a comparação de igualdade entre objetos de valor.
-Para resolver isso podemos pensar como javeiros rsrsrs e usar um método Equals.
-Abre portas para outros tipos de comparação de igualdade, por exemplo EqualsString
+Outra necessidade é a de construtores para valores específicos, em um determinado caso de uso talvez se deseje uma
+condição fiscal específica, por exemplo Responsable Inscirpto... Então vale encapsular essa regra de como criar uma
+condição fiscal com este valor específico.
 */
 
 func main() {
 	var fiscalCondition domain.FiscalCondition
 
-	fiscalCondition, err := domain.NewFiscalConditionFromString("")
-	otherFiscalCondition, err := domain.NewFiscalConditionFromString("Monotributo")
-	equalsString, err := otherFiscalCondition.EqualsString("MONOTRIBUTO")
+	fiscalCondition = domain.Monotributo()
 
 	fmt.Println(strings.Repeat("-", 30))
 	fmt.Println(fmt.Sprintf("FISCAL_CONDITION: %s", fiscalCondition))
@@ -25,8 +23,6 @@ func main() {
 	fmt.Println(fmt.Sprintf("IS MONOTRIBUTO: %t", fiscalCondition.IsMonotributo()))
 	fmt.Println(fmt.Sprintf("IS RESPONSABLE INSCRIPTO: %t", fiscalCondition.IsResponsableInscripto()))
 	fmt.Println(fmt.Sprintf("IS EMPTY: %t", fiscalCondition.IsEmpty()))
-	fmt.Println(fmt.Sprintf("EQUALS: %t", fiscalCondition.Equals(otherFiscalCondition)))
-	fmt.Println(fmt.Sprintf("EQUALS STRING: %t", equalsString))
-	fmt.Println(fmt.Sprintf("ERROR: %+v", err))
+	// fmt.Println(fmt.Sprintf("ERROR: %+v", err))
 	fmt.Println(strings.Repeat("-", 30))
 }

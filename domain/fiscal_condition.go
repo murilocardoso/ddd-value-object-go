@@ -22,6 +22,26 @@ const (
 	empty                string = ""
 )
 
+func ConsumidorFinal() FiscalCondition {
+	value, _ := newFiscalCondition(consumidorFinal)
+	return value
+}
+
+func Monotributo() FiscalCondition {
+	value, _ := newFiscalCondition(monotributo)
+	return value
+}
+
+func IVAReponsableInscripto() FiscalCondition {
+	value, _ := newFiscalCondition(responsableInscripto)
+	return value
+}
+
+func Empty() FiscalCondition {
+	value, _ := newFiscalCondition(empty)
+	return value
+}
+
 func (f *FiscalCondition) Equals(fiscalCondition FiscalCondition) bool {
 	return f.value == fiscalCondition.value
 }
