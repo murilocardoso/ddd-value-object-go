@@ -7,13 +7,9 @@ import (
 )
 
 /*
-Uma possível forma de resolver é convencionar usar uma função que encapsule as validações dos valores válidos, nesse
-caso seria uma função construtora do tipo FiscalCondition
-
-Aqui há uma oportunidade de encapsular este regra de normalização, pode ser que alguns casos de uso venham
-normalizado e em outros não, por não ser uma operação cara, pode-se encapsular e sempre normalizar antes de criar.
-
-Pronto, agora conseguimos lidar também com valores desnormalizados e está encapsulado!
+Ainda dependemos da convenção de sempre usar um construtor e também temos outros pontos...
+Seguindo as boas práticas para modelagem orientada a objetos, os valores estão expostos quando deveríamos encapsulá-los
+e apenas expor métodos para que os clientes possam fazer o que queiram.
 */
 
 func main() {
@@ -26,8 +22,3 @@ func main() {
 	fmt.Println(fmt.Sprintf("ERROR: %+v", err))
 	fmt.Println(strings.Repeat("-", 30))
 }
-
-/*
-Nesse caso, como Monotributo não está normalizado da forma esperada é retornado um erro.
-Se passarmos o valor normalizado corretamente, não teremos problemas...
-*/
