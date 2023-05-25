@@ -8,13 +8,17 @@ import (
 
 /*
 Um ponto acabou ficando para trás, tudo isso até o momento depende de uma convenção de usar um construtor, se alguém
-ainda quiser burlar e associar um valor completamente inválido para umq condição fiscal é possível.
+ainda quiser burlar e associar um valor completamente inválido para uma condição fiscal é possível.
+
+Para resolver isso não tem muito jeito a não ser transformar a condição fiscal em um tipo estruturado de verdade e não
+um simples apelido para string.
 */
 
 func main() {
 	var fiscalCondition domain.FiscalCondition
 
 	fiscalCondition = "Murilo"
+	//fiscalCondition, err := domain.NewFiscalConditionFromString("Monotributo")
 
 	fmt.Println(strings.Repeat("-", 30))
 	fmt.Println(fmt.Sprintf("FISCAL_CONDITION: %s", fiscalCondition))

@@ -11,49 +11,53 @@ import (
 	"unicode"
 )
 
-type FiscalCondition string
+type FiscalCondition struct {
+	value string
+}
 
 const (
-	consumidorFinal      FiscalCondition = "CONSUMIDOR_FINAL"
-	monotributo          FiscalCondition = "MONOTRIBUTO"
-	responsableInscripto FiscalCondition = "RESPONSABLE_INSCRIPTO"
+	consumidorFinal      string = "CONSUMIDOR_FINAL"
+	monotributo          string = "MONOTRIBUTO"
+	responsableInscripto string = "RESPONSABLE_INSCRIPTO"
 )
 
 func (f *FiscalCondition) IsConsumidorFinal() bool {
-	return *f == consumidorFinal
+	return f.value == consumidorFinal
 }
 
 func (f *FiscalCondition) IsMonotributo() bool {
-	return *f == monotributo
+	return f.value == monotributo
 }
 
 func (f *FiscalCondition) IsResponsableInscripto() bool {
-	return *f == responsableInscripto
+	return f.value == responsableInscripto
 }
 
 func NewFiscalConditionFromString(aFiscalCondition string) (FiscalCondition, error) {
 	normalizedFiscalCondition, err := normalizeFiscalCondition(aFiscalCondition)
 	if err != nil {
-		return "", err
+		return FiscalCondition{}, err
 	}
 
 	return newFiscalCondition(normalizedFiscalCondition)
 }
 
 func newFiscalCondition(aFiscalCondition string) (FiscalCondition, error) {
-	fiscalCondition := FiscalCondition(aFiscalCondition)
+	fiscalCondition := FiscalCondition{
+		value: aFiscalCondition,
+	}
 
 	if !fiscalCondition.valid() {
-		return "", errors.New(fmt.Sprintf("Invalid fiscal condition %s", fiscalCondition))
+		return FiscalCondition{}, errors.New(fmt.Sprintf("Invalid fiscal condition %s", fiscalCondition))
 	}
 
 	return fiscalCondition, nil
 }
 
 func (f *FiscalCondition) valid() bool {
-	validValues := []string{string(consumidorFinal), string(monotributo), string(responsableInscripto)}
+	validValues := []string{consumidorFinal, monotributo, responsableInscripto}
 	// go get github.com/thoas/go-funk
-	return funk.Contains(validValues, string(*f))
+	return funk.Contains(validValues, f.value)
 }
 
 func normalizeFiscalCondition(aFiscalCondition string) (string, error) {
