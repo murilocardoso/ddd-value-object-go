@@ -1,4 +1,4 @@
-package domain
+package domainfiscalcondition
 
 import (
 	"errors"
@@ -11,7 +11,7 @@ import (
 	"unicode"
 )
 
-type FiscalCondition struct {
+type Model struct {
 	value string
 }
 
@@ -22,31 +22,31 @@ const (
 	empty                string = ""
 )
 
-func ConsumidorFinal() FiscalCondition {
-	value, _ := newFiscalCondition(consumidorFinal)
+func ConsumidorFinal() Model {
+	value, _ := new(consumidorFinal)
 	return value
 }
 
-func Monotributo() FiscalCondition {
-	value, _ := newFiscalCondition(monotributo)
+func Monotributo() Model {
+	value, _ := new(monotributo)
 	return value
 }
 
-func IVAReponsableInscripto() FiscalCondition {
-	value, _ := newFiscalCondition(responsableInscripto)
+func IVAReponsableInscripto() Model {
+	value, _ := new(responsableInscripto)
 	return value
 }
 
-func Empty() FiscalCondition {
-	value, _ := newFiscalCondition(empty)
+func Empty() Model {
+	value, _ := new(empty)
 	return value
 }
 
-func (f *FiscalCondition) Equals(fiscalCondition FiscalCondition) bool {
+func (f *Model) Equals(fiscalCondition Model) bool {
 	return f.value == fiscalCondition.value
 }
 
-func (f *FiscalCondition) EqualsString(stringFiscalCondition string) (bool, error) {
+func (f *Model) EqualsString(stringFiscalCondition string) (bool, error) {
 	normalizedFiscalCondition, err := normalizeFiscalCondition(stringFiscalCondition)
 	if err != nil {
 		return false, err
@@ -55,44 +55,44 @@ func (f *FiscalCondition) EqualsString(stringFiscalCondition string) (bool, erro
 	return f.value == normalizedFiscalCondition, nil
 }
 
-func (f *FiscalCondition) IsConsumidorFinal() bool {
+func (f *Model) IsConsumidorFinal() bool {
 	return f.value == consumidorFinal
 }
 
-func (f *FiscalCondition) IsMonotributo() bool {
+func (f *Model) IsMonotributo() bool {
 	return f.value == monotributo
 }
 
-func (f *FiscalCondition) IsResponsableInscripto() bool {
+func (f *Model) IsResponsableInscripto() bool {
 	return f.value == responsableInscripto
 }
 
-func (f *FiscalCondition) IsEmpty() bool {
+func (f *Model) IsEmpty() bool {
 	return f.value == empty
 }
 
-func NewFiscalConditionFromString(aFiscalCondition string) (FiscalCondition, error) {
+func NewFromString(aFiscalCondition string) (Model, error) {
 	normalizedFiscalCondition, err := normalizeFiscalCondition(aFiscalCondition)
 	if err != nil {
-		return FiscalCondition{}, err
+		return Model{}, err
 	}
 
-	return newFiscalCondition(normalizedFiscalCondition)
+	return new(normalizedFiscalCondition)
 }
 
-func newFiscalCondition(aFiscalCondition string) (FiscalCondition, error) {
-	fiscalCondition := FiscalCondition{
+func new(aFiscalCondition string) (Model, error) {
+	fiscalCondition := Model{
 		value: aFiscalCondition,
 	}
 
 	if !fiscalCondition.valid() {
-		return FiscalCondition{}, errors.New(fmt.Sprintf("Invalid fiscal condition %s", fiscalCondition))
+		return Model{}, errors.New(fmt.Sprintf("Invalid fiscal condition %s", fiscalCondition))
 	}
 
 	return fiscalCondition, nil
 }
 
-func (f *FiscalCondition) valid() bool {
+func (f *Model) valid() bool {
 	validValues := []string{consumidorFinal, monotributo, responsableInscripto, empty}
 	// go get github.com/thoas/go-funk
 	return funk.Contains(validValues, f.value)

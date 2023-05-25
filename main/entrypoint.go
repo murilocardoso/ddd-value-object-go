@@ -2,20 +2,19 @@ package main
 
 import (
 	"fmt"
-	"github.com/murilocardoso/ddd-value-object-go/domain"
+	"github.com/murilocardoso/ddd-value-object-go/domain/domainfiscalcondition"
 	"strings"
 )
 
 /*
-Outra necessidade é a de construtores para valores específicos, em um determinado caso de uso talvez se deseje uma
-condição fiscal específica, por exemplo Responsable Inscirpto... Então vale encapsular essa regra de como criar uma
-condição fiscal com este valor específico.
+O encapsulamento do go é por pacote, o arquivo não exerce nenhuma influencia sobre o encapsulamento. Para garantir o
+encapsulamento desse modelo, podemos dedicar um pacote específico para este objeto de valor.
 */
 
 func main() {
-	var fiscalCondition domain.FiscalCondition
+	var fiscalCondition domainfiscalcondition.Model
 
-	fiscalCondition = domain.Monotributo()
+	fiscalCondition, err := domainfiscalcondition.NewFromString("Monotributo")
 
 	fmt.Println(strings.Repeat("-", 30))
 	fmt.Println(fmt.Sprintf("FISCAL_CONDITION: %s", fiscalCondition))
@@ -23,6 +22,6 @@ func main() {
 	fmt.Println(fmt.Sprintf("IS MONOTRIBUTO: %t", fiscalCondition.IsMonotributo()))
 	fmt.Println(fmt.Sprintf("IS RESPONSABLE INSCRIPTO: %t", fiscalCondition.IsResponsableInscripto()))
 	fmt.Println(fmt.Sprintf("IS EMPTY: %t", fiscalCondition.IsEmpty()))
-	// fmt.Println(fmt.Sprintf("ERROR: %+v", err))
+	fmt.Println(fmt.Sprintf("ERROR: %+v", err))
 	fmt.Println(strings.Repeat("-", 30))
 }
