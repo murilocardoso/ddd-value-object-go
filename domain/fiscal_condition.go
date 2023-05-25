@@ -19,6 +19,7 @@ const (
 	consumidorFinal      string = "CONSUMIDOR_FINAL"
 	monotributo          string = "MONOTRIBUTO"
 	responsableInscripto string = "RESPONSABLE_INSCRIPTO"
+	empty                string = ""
 )
 
 func (f *FiscalCondition) IsConsumidorFinal() bool {
@@ -31,6 +32,10 @@ func (f *FiscalCondition) IsMonotributo() bool {
 
 func (f *FiscalCondition) IsResponsableInscripto() bool {
 	return f.value == responsableInscripto
+}
+
+func (f *FiscalCondition) IsEmpty() bool {
+	return f.value == empty
 }
 
 func NewFiscalConditionFromString(aFiscalCondition string) (FiscalCondition, error) {
@@ -55,7 +60,7 @@ func newFiscalCondition(aFiscalCondition string) (FiscalCondition, error) {
 }
 
 func (f *FiscalCondition) valid() bool {
-	validValues := []string{consumidorFinal, monotributo, responsableInscripto}
+	validValues := []string{consumidorFinal, monotributo, responsableInscripto, empty}
 	// go get github.com/thoas/go-funk
 	return funk.Contains(validValues, f.value)
 }
