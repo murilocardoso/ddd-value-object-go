@@ -5,13 +5,22 @@ import (
 	"strings"
 )
 
-func main() {
-	var fiscalCondition string
+/*
+Olhando o exemplo de uma string solta parece um pouco forçado, mas usando dentro de uma estrutura eu diria que é bem
+comum encontrar.
+*/
+type Taxpayer struct {
+	FiscalCondition string
+}
 
-	fiscalCondition = "Murilo"
+func main() {
+
+	var taxpayer Taxpayer
+
+	taxpayer.FiscalCondition = "Monotributo"
 
 	fmt.Println(strings.Repeat("-", 30))
-	fmt.Println(fiscalCondition)
+	fmt.Println(taxpayer.FiscalCondition)
 	fmt.Println(strings.Repeat("-", 30))
 }
 
