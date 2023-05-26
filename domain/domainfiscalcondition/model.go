@@ -20,6 +20,10 @@ const (
 	empty                string = ""
 )
 
+func (f *Model) Value() string {
+	return f.value
+}
+
 func ConsumidorFinal() Model {
 	value, _ := new(consumidorFinal)
 	return value
