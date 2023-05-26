@@ -25,22 +25,22 @@ func (f *Model) Value() string {
 }
 
 func ConsumidorFinal() Model {
-	value, _ := new(consumidorFinal)
+	value, _ := newFiscalCondition(consumidorFinal)
 	return value
 }
 
 func Monotributo() Model {
-	value, _ := new(monotributo)
+	value, _ := newFiscalCondition(monotributo)
 	return value
 }
 
 func IVAResponsableInscripto() Model {
-	value, _ := new(responsableInscripto)
+	value, _ := newFiscalCondition(responsableInscripto)
 	return value
 }
 
 func Empty() Model {
-	value, _ := new(empty)
+	value, _ := newFiscalCondition(empty)
 	return value
 }
 
@@ -79,10 +79,10 @@ func NewFromString(aFiscalCondition string) (Model, error) {
 		return Empty(), err
 	}
 
-	return new(normalizedFiscalCondition)
+	return newFiscalCondition(normalizedFiscalCondition)
 }
 
-func new(aFiscalCondition string) (Model, error) {
+func newFiscalCondition(aFiscalCondition string) (Model, error) {
 	fiscalCondition := Model{
 		value: aFiscalCondition,
 	}
