@@ -34,7 +34,7 @@ func Monotributo() Model {
 	return value
 }
 
-func IVAReponsableInscripto() Model {
+func IVAResponsableInscripto() Model {
 	value, _ := new(responsableInscripto)
 	return value
 }
