@@ -34,7 +34,7 @@ func main() {
 }
 
 type Taxpayer struct {
-	padrones PadronesByCodeAndPeriod
+	Padrones PadronesByCodeAndPeriod
 }
 
 type PadronesByCodeAndPeriod map[PadronCode]map[PadronPeriod]Padron
