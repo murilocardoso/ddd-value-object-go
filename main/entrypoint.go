@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/murilocardoso/ddd-value-object-go/domain"
 	"github.com/murilocardoso/ddd-value-object-go/domain/domainfiscalcondition"
 	"strings"
 )
@@ -16,7 +17,6 @@ ao invés de eu como client pegar o valor e aplicar alguma regra.
 
 func main() {
 	var fiscalCondition domainfiscalcondition.Model
-
 	fiscalCondition, err := domainfiscalcondition.NewFromString("Monotributo")
 
 	fmt.Println(strings.Repeat("-", 30))
@@ -28,4 +28,25 @@ func main() {
 	fmt.Println(fmt.Sprintf("VALUE: %s", fiscalCondition.Value()))
 	fmt.Println(fmt.Sprintf("ERROR: %+v", err))
 	fmt.Println(strings.Repeat("-", 30))
+
+	domain.NewFiscalIdentityID()
+	domain.NewFiscalIdentityIDFromString("")
+}
+
+type Taxpayer struct {
+	padrones PadronesByCodeAndPeriod
+}
+
+type PadronesByCodeAndPeriod map[PadronCode]map[PadronPeriod]Padron
+
+type PadronCode struct {
+	Value string
+}
+
+type PadronPeriod struct {
+	Value string
+}
+
+type Padron struct {
+	SomeValue string
 }
